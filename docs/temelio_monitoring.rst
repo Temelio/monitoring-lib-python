@@ -6,6 +6,9 @@ Subpackages
 
 .. toctree::
 
+    temelio_monitoring.context
+    temelio_monitoring.resource
+
 Submodules
 ----------
 
