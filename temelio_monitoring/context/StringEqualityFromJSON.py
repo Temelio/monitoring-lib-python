@@ -50,11 +50,16 @@ class StringEqualityFromJSON(Context):
         :rtype: str
         """
 
+        value = None
+
+        if len(metric.value) > 0:
+            value = metric.value[0].value
+
         return self.fmt_metric.format(
             do_str_cast=self._do_str_cast,
             expected=self._expected_string,
             name=self.name.replace('_', ' ').capitalize(),
-            value=metric.value[0].value
+            value=value
         )
 
 

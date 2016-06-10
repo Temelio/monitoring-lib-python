@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-ConnectionCount class tests
---------------------------
+StringEqualityFromJSON class tests
+----------------------------------
 
-Tests for `ConnectionCount` class.
+Tests for `StringEqualityFromJSON` class.
 """
 
 
@@ -42,7 +42,22 @@ def test_with_args(expected_string, result, do_cast, expected_output):
     assert context.describe(metric) == expected_output
 
 
-def test_without_value():
+def test_desc_without_value():
+    """
+    Check if JSON path request not return result
+    """
+
+    context = StringEqualityFromJSON('json_output', 'foo', False)
+    metric = Metric('my_metric', [])
+
+    result = context.describe(metric)
+
+    assert isinstance(context, Context) is True
+    assert isinstance(context, StringEqualityFromJSON) is True
+    assert 'Json output: None' in result
+
+
+def test_eval_without_value():
     """
     Check if JSON path request not return result
     """
@@ -55,7 +70,8 @@ def test_without_value():
 
         assert isinstance(context, Context) is True
         assert isinstance(context, StringEqualityFromJSON) is True
-        assert str(err) == 'No value returned by probe'
+
+    assert 'No value returned by probe' in str(err)
 
 
 @pytest.mark.parametrize('expected_string,result,do_cast,eval_result', [
