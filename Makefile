@@ -59,7 +59,6 @@ docs:
 	sphinx-apidoc -o docs/ temelio_monitoring
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	$(BROWSER) docs/_build/html/index.html
 
 servedocs: docs
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
