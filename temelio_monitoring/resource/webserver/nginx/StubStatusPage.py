@@ -10,8 +10,8 @@ import re
 from nagiosplugin import CheckError
 from nagiosplugin import Metric
 from nagiosplugin import Resource
-from requests import get
-from requests import RequestException
+
+from temelio_monitoring.utils import RequestsUtils
 
 
 class StubStatusPage(Resource):
@@ -79,15 +79,9 @@ class StubStatusPage(Resource):
                            re.VERBOSE | re.IGNORECASE | re.MULTILINE)
 
         # Get status page content
-        try:
-            request = get(self.url, auth=(self.username, self.password))
-        except RequestException as err:
-            raise CheckError(RuntimeError(err))
-
-        # Parse status code
-        if request.status_code >= 400:
-            raise CheckError(RuntimeError('%i : "%s"' % (request.status_code,
-                                                         request.text)))
+        request = RequestsUtils.get(url=self.url,
+                                    username=self.username,
+                                    password=self.password)
 
         # Parse status page content
         matches = regex.match(request.text)
