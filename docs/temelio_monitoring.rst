@@ -8,6 +8,7 @@ Subpackages
 
     temelio_monitoring.context
     temelio_monitoring.resource
+    temelio_monitoring.utils
 
 Submodules
 ----------

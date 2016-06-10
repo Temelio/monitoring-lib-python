@@ -9,7 +9,8 @@ from nagiosplugin import CheckError
 from nagiosplugin import Metric
 from nagiosplugin import Resource
 from jsonpath_rw import parse
-from requests import get, RequestException
+
+from temelio_monitoring.utils import RequestsUtils
 
 
 class GetValueByJsonPath(Resource):
@@ -22,9 +23,9 @@ class GetValueByJsonPath(Resource):
         """
         Initialize ressource attributes
 
-        :param url: Nginx stub status url
-        :param username: Username authorized to view stats
-        :param password: Password of username authorized to view stats
+        :param src: JSON target
+        :param username: Username authorized to view JSON
+        :param password: Password of username authorized to view JSON
         :param json_path: JSON path used to get value
         :type url: string
         :type username: string
@@ -51,15 +52,10 @@ class GetValueByJsonPath(Resource):
         """
 
         # Get status page content
-        try:
-            request = get(self.src, auth=(self.username, self.password))
-        except RequestException as err:
-            raise CheckError(RuntimeError(err))
+        request = RequestsUtils.get(url=self.src,
+                                    username=self.username,
+                                    password=self.password)
 
-        # Parse status code
-        if request.status_code >= 400:
-            raise CheckError(RuntimeError('%i : "%s"' % (request.status_code,
-                                                         request.text)))
         return request.json()
 
 
@@ -79,9 +75,9 @@ class GetValueByJsonPath(Resource):
 
     def probe(self):
         """
-        Get status page content and return Metric objects
+        Get JSON data using JSON path and return Metric objects
 
-        :return: a generator with statistics
+        :return: a generator with data
         :rtype: generator
         """
 
