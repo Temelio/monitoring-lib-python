@@ -1,27 +1,30 @@
 """
-This module manage String equality testing context for data from JSON
+This module manage String value testing context for data from JSON
 """
 
 from nagiosplugin import CheckError
 from nagiosplugin import Context
 from nagiosplugin import Ok, Critical
 
+from temelio_monitoring.utils import ContextUtils
+from temelio_monitoring.utils import OperatorUtils
 
-class StringEqualityFromJSON(Context):
+
+class StringValueFromJSON(Context):
     """
-    StringEqualityFromJSON context class
+    StringValueFromJSON context class
     """
 
-    def __init__(self, name, expected_string='', do_str_cast=False):
+    def __init__(self, name, expected_string='', operator='=='):
         """
         Init method used by subclass
 
         :param name: Context name
         :param expected_string: Expected string return by JSON path
-        :param do_str_cast: If True, use str() on value returned by JSON path
+        :param operator: Operator to compare probe value with expected string
         :type name: str
         :type expected_string: str
-        :type do_str_cast: bool
+        :type operator: str
         """
 
         # Call parent class controller
@@ -30,13 +33,14 @@ class StringEqualityFromJSON(Context):
         # Expected string value
         self._expected_string = expected_string
 
-        # Do an str cast before evaluate value
-        self._do_str_cast = do_str_cast
+        # Manage operator used to compare strings
+        self._operator = OperatorUtils.get_operator(operator)
+        self._operator_str = operator
 
         # Base output
         self.fmt_metric = (
             "{name}: {value} "
-            "(expected string: {expected} // do_str_cast: {do_str_cast})"
+            "(expected string: {expected} // operator used: {operator})"
         )
 
 
@@ -56,9 +60,9 @@ class StringEqualityFromJSON(Context):
             value = metric.value[0].value
 
         return self.fmt_metric.format(
-            do_str_cast=self._do_str_cast,
             expected=self._expected_string,
             name=metric.name.replace('_', ' ').capitalize(),
+            operator=self._operator_str,
             value=value
         )
 
@@ -75,15 +79,16 @@ class StringEqualityFromJSON(Context):
         :rtype: nagiosplugin.Result
         """
 
-        if len(metric.value) == 0:
-            raise CheckError(RuntimeError('No value returned by probe'))
+        # This context only manage one element
+        check_result = ContextUtils.check_size(metric.value, 1, 1)
+        if check_result:
+            raise CheckError(check_result)
 
+        # Get value
         value = metric.value[0].value
 
-        if self._do_str_cast is True:
-            result = str(self._expected_string) == str(value)
-        else:
-            result = self._expected_string == value
+        # Do compare between metric value and expected string
+        result = self._operator(self._expected_string, value)
 
         if result:
             return self.result_cls(Ok, '', metric)

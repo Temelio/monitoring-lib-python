@@ -2,6 +2,6 @@
 Manage json context classes import
 """
 
-from . import StringEqualityFromJSON
+from . import StringValueFromJSON
 
-StringEqualityFromJSON = StringEqualityFromJSON.StringEqualityFromJSON
+StringValueFromJSON = StringValueFromJSON.StringValueFromJSON
