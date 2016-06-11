@@ -88,3 +88,57 @@ def test_with_path_data():
 
         assert isinstance(metric, Metric) is True
         assert len(metric.value) == 1
+
+
+@pytest.mark.parametrize('metric_name,expected_metric', [
+    (None, 'json-matches'),
+    ('foo', 'foo')
+])
+def test_default_metric_name(metric_name, expected_metric):
+    """
+    Check metric_name management
+    """
+
+    with requests_mock.mock() as mock:
+
+        fake_url = 'http://localhost/foo'
+        mock.get(fake_url, text='{"foo": "bar"}')
+
+        if metric_name is None:
+            resource = GetValueByJsonPath(json_path='foo', src=fake_url)
+        else:
+            resource = GetValueByJsonPath(json_path='foo',
+                                          src=fake_url,
+                                          metric_name=metric_name)
+        metric = resource.probe()
+
+        assert isinstance(metric, Metric) is True
+        assert len(metric.value) == 1
+        assert metric.name == expected_metric
+
+
+@pytest.mark.parametrize('context_name,expected_context', [
+    (None, 'json-matches'),
+    ('foo', 'foo')
+])
+def test_default_context_name(context_name, expected_context):
+    """
+    Check context name management
+    """
+
+    with requests_mock.mock() as mock:
+
+        fake_url = 'http://localhost/foo'
+        mock.get(fake_url, text='{"foo": "bar"}')
+
+        if context_name is None:
+            resource = GetValueByJsonPath(json_path='foo', src=fake_url)
+        else:
+            resource = GetValueByJsonPath(json_path='foo',
+                                          src=fake_url,
+                                          context_name=context_name)
+        metric = resource.probe()
+
+        assert isinstance(metric, Metric) is True
+        assert len(metric.value) == 1
+        assert metric.context == expected_context

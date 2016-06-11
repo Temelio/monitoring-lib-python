@@ -40,7 +40,7 @@ class GetValueByJsonPath(Resource):
         self.username = kwargs.get('username', '')
         self.password = kwargs.get('password', '')
         self.metric_name = kwargs.get('metric_name', 'json-matches')
-        self.context_name = kwargs.get('context_name', 'json_value')
+        self.context_name = kwargs.get('context_name', self.metric_name)
 
         try:
             self.json_path = parse(kwargs.get('json_path', ''))
