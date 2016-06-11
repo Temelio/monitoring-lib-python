@@ -17,13 +17,13 @@ from temelio_monitoring.context import StringEqualityFromJSON
 
 @pytest.mark.parametrize('expected_string,result,do_cast,expected_output', [
     ('foo', 'bar', False,
-     'Json output: bar (expected string: foo // do_str_cast: False)'),
+     'My metric: bar (expected string: foo // do_str_cast: False)'),
     ('foo', 'foo', False,
-     'Json output: foo (expected string: foo // do_str_cast: False)'),
+     'My metric: foo (expected string: foo // do_str_cast: False)'),
     ('5', 5, True,
-     'Json output: 5 (expected string: 5 // do_str_cast: True)'),
+     'My metric: 5 (expected string: 5 // do_str_cast: True)'),
     ('5', 5, False,
-     'Json output: 5 (expected string: 5 // do_str_cast: False)'),
+     'My metric: 5 (expected string: 5 // do_str_cast: False)'),
 ])
 def test_with_args(expected_string, result, do_cast, expected_output):
     """
@@ -54,7 +54,7 @@ def test_desc_without_value():
 
     assert isinstance(context, Context) is True
     assert isinstance(context, StringEqualityFromJSON) is True
-    assert 'Json output: None' in result
+    assert 'My metric: None' in result
 
 
 def test_eval_without_value():
@@ -74,23 +74,26 @@ def test_eval_without_value():
     assert 'No value returned by probe' in str(err)
 
 
-@pytest.mark.parametrize('expected_string,result,do_cast,eval_result', [
-    ('foo', 'bar', False, Critical),
-    ('foo', 'foo', False, Ok),
-    ('5', 5, True, Ok),
-    ('5', 5, False, Critical)
-])
-def test_eval_with_cast(expected_string, result, do_cast, eval_result):
+@pytest.mark.parametrize(
+    'metric_name,expected_string,result,do_cast,eval_result', [
+        ('my_metric', 'foo', 'bar', False, Critical),
+        ('my_metric', 'foo', 'foo', False, Ok),
+        ('my_metric', '5', 5, True, Ok),
+        ('my_metric', '5', 5, False, Critical)
+    ]
+)
+def test_eval_with_cast(metric_name, expected_string, result, do_cast,
+                        eval_result):
     """
-    Check evaluate method, Rssource param not used, so set it to None
+    Check evaluate method, Ressource param not used, so set it to None
     """
 
     context = StringEqualityFromJSON(
-        'json_output',
+        metric_name,
         expected_string=expected_string,
         do_str_cast=do_cast)
     result_array = [DatumInContext(result)]
-    metric = Metric('my_metric', result_array)
+    metric = Metric(metric_name, result_array, context=metric_name)
 
     assert isinstance(context, Context) is True
     assert isinstance(context, StringEqualityFromJSON) is True

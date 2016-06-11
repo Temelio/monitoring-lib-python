@@ -58,7 +58,7 @@ class StringEqualityFromJSON(Context):
         return self.fmt_metric.format(
             do_str_cast=self._do_str_cast,
             expected=self._expected_string,
-            name=self.name.replace('_', ' ').capitalize(),
+            name=metric.name.replace('_', ' ').capitalize(),
             value=value
         )
 
