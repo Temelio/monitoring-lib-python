@@ -18,8 +18,7 @@ class GetValueByJsonPath(Resource):
     This ressource manage value check from JSON string path
     """
 
-    def __init__(self, src='', username='', password='',
-                 json_path=''):
+    def __init__(self, **kwargs):
         """
         Initialize ressource attributes
 
@@ -27,18 +26,24 @@ class GetValueByJsonPath(Resource):
         :param username: Username authorized to view JSON
         :param password: Password of username authorized to view JSON
         :param json_path: JSON path used to get value
+        :param metric_name: Metric name returned with this search
+        :param context_name: Context name to set for this metric
         :type url: string
         :type username: string
         :type password: string
         :type json_path: string
+        :type metric_name: string
+        :type context_name: string
         """
 
-        self.src = src
-        self.username = username
-        self.password = password
+        self.src = kwargs.get('src', '')
+        self.username = kwargs.get('username', '')
+        self.password = kwargs.get('password', '')
+        self.metric_name = kwargs.get('metric_name', 'json-matches')
+        self.context_name = kwargs.get('context_name', 'json_value')
 
         try:
-            self.json_path = parse(json_path)
+            self.json_path = parse(kwargs.get('json_path', ''))
         except Exception as err:
             raise CheckError(RuntimeError(err))
 
@@ -88,6 +93,6 @@ class GetValueByJsonPath(Resource):
         matches = self.json_path.find(json_data)
 
         # Build and return Metric objects from data
-        return Metric('json_matches',
+        return Metric(self.metric_name,
                       matches,
-                      context='json_value')
+                      context=self.context_name)
