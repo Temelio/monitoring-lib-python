@@ -2,7 +2,6 @@
 This module manage String value testing context for data from JSON
 """
 
-from nagiosplugin import CheckError
 from nagiosplugin import Context
 from nagiosplugin import Ok, Critical
 
@@ -79,13 +78,8 @@ class StringValueFromJSON(Context):
         :rtype: nagiosplugin.Result
         """
 
-        # This context only manage one element
-        check_result = ContextUtils.check_size(metric.value, 1, 1)
-        if check_result:
-            raise CheckError(check_result)
-
-        # Get value
-        value = metric.value[0].value
+        # Extract value from JSON path result
+        value = ContextUtils.manage_value_from_json(metric.value)
 
         # Do compare between metric value and expected string
         result = self._operator(self._expected_string, value)

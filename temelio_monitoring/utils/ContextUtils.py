@@ -2,6 +2,9 @@
 Manage utils methods to use in context classes
 """
 
+from nagiosplugin import CheckError
+
+
 class ContextUtils(object):
     """
     Utils methods to use in context classes
@@ -36,3 +39,23 @@ class ContextUtils(object):
             return 'More values than expected'
 
         return ''
+
+
+    @staticmethod
+    def manage_value_from_json(metric_value):
+        """
+        Manage single value expectation in metric from JSON data
+
+        :param metric_value: Metric value
+        :type metric_value: list
+        :returns: Extracted value from JSON path result
+        :rtype: string|int
+        """
+
+        # This context only manage one element
+        check_result = ContextUtils.check_size(metric_value, 1, 1)
+        if check_result:
+            raise CheckError(check_result)
+
+        # Get value
+        return metric_value[0].value
