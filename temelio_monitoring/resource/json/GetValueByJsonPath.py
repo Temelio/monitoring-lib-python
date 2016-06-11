@@ -25,27 +25,23 @@ class GetValueByJsonPath(Resource):
         :param src: JSON target
         :param username: Username authorized to view JSON
         :param password: Password of username authorized to view JSON
-        :param json_path: JSON path used to get value
-        :param metric_name: Metric name returned with this search
-        :param context_name: Context name to set for this metric
+        :param requests: 'metric_name;;json_path;;context_name' list
+        :param request_separator: Reparator used in request string
         :type url: string
         :type username: string
         :type password: string
-        :type json_path: string
-        :type metric_name: string
-        :type context_name: string
+        :type requests: list
+        :type request_separator: string
         """
 
         self.src = kwargs.get('src', '')
         self.username = kwargs.get('username', '')
         self.password = kwargs.get('password', '')
-        self.metric_name = kwargs.get('metric_name', 'json-matches')
-        self.context_name = kwargs.get('context_name', self.metric_name)
+        self.requests = kwargs.get('requests', [])
+        self.request_separator = kwargs.get('request_separator', ';;')
 
-        try:
-            self.json_path = parse(kwargs.get('json_path', ''))
-        except Exception as err:
-            raise CheckError(RuntimeError(err))
+        if len(self.requests) == 0:
+            raise CheckError('No request data to process')
 
 
     def _get_data_from_url(self):
@@ -78,6 +74,42 @@ class GetValueByJsonPath(Resource):
         return self._get_data_from_url()
 
 
+    def _prepare_probe_requests(self):
+        """
+        Prepare JSON queries before probe processing
+
+        :returns: tuples list (metric_name, json_path, context_name)
+        :rtype: list
+        """
+
+        probe_requests = []
+
+        for request_string in self.requests:
+
+            # Split each query
+            request = request_string.split(self.request_separator)
+            if len(request) != 3:
+                raise CheckError('Bad request format')
+
+            # Metric name management
+            if request[0] == '':
+                request[0] = 'json-matches'
+
+            # JSON path management
+            try:
+                request[1] = parse(request[1])
+            except Exception as err:
+                raise CheckError(RuntimeError(err))
+
+            # Context name
+            if request[2] == '':
+                request[2] = request[0]
+
+            probe_requests.append(tuple(request))
+
+        return probe_requests
+
+
     def probe(self):
         """
         Get JSON data using JSON path and return Metric objects
@@ -86,13 +118,19 @@ class GetValueByJsonPath(Resource):
         :rtype: generator
         """
 
+        # Prepare check data before processing
+        probe_requests = self._prepare_probe_requests()
+
         # Get data from src
         json_data = self._get_data()
 
-        # Get json_path target value
-        matches = self.json_path.find(json_data)
+        # Process each request
+        for probe_request in probe_requests:
 
-        # Build and return Metric objects from data
-        return Metric(self.metric_name,
-                      matches,
-                      context=self.context_name)
+            # Get json_path target value
+            matches = probe_request[1].find(json_data)
+
+            # Build and return Metric objects from data
+            yield Metric(probe_request[0],
+                         matches,
+                         context=probe_request[2])
