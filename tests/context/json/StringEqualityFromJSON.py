@@ -13,7 +13,7 @@ from nagiosplugin import Context, Metric, Ok, Critical
 import pytest
 
 
-from temelio_monitoring.context import StringEqualityFromJSON
+from temelio_monitoring.context.json import StringEqualityFromJSON
 
 @pytest.mark.parametrize('expected_string,result,do_cast,expected_output', [
     ('foo', 'bar', False,
