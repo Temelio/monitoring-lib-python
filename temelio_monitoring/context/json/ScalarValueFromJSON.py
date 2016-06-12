@@ -2,7 +2,7 @@
 This module manage Scalar value testing context for data from JSON
 """
 
-from nagiosplugin import Metric, ScalarContext
+from nagiosplugin import ScalarContext
 
 from temelio_monitoring.utils import ContextUtils
 
@@ -27,13 +27,8 @@ class ScalarValueFromJSON(ScalarContext):
         # Extract value from JSON path result
         new_value = ContextUtils.manage_value_from_json(metric.value)
 
-        # Create new metric object with updated value
-        new_metric = Metric(
-            metric.name,
-            new_value,
-            context=metric.context,
-            contextobj=metric.contextobj,
-            resource=metric.resource)
+        # Create new metric with extracted values
+        new_metric = ContextUtils.replace_metric_value(metric, new_value)
 
         # Call parent evaluate method with new updated metric
         return super().evaluate(new_metric, resource)

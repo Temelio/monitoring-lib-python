@@ -36,6 +36,8 @@ def test_eval_without_value(warning, critical, exp_state):
     assert isinstance(context, CountValuesFromJSON) is True
     assert result.state == exp_state
     assert context.describe(result.metric) == 'Foobar: 0 ([])'
+    assert context.performance(result.metric, None).label == 'foobar'
+    assert context.performance(result.metric, None).value == 0
 
 
 @pytest.mark.parametrize('warning,critical,exp_state', [
@@ -61,6 +63,8 @@ def test_eval_with_one_value(warning, critical, exp_state):
     assert isinstance(context, CountValuesFromJSON) is True
     assert result.state == exp_state
     assert context.describe(result.metric) == "Foobar: 1 (['foo'])"
+    assert context.performance(result.metric, None).label == 'foobar'
+    assert context.performance(result.metric, None).value == 1
 
 
 @pytest.mark.parametrize('warning,critical,exp_state', [
@@ -86,3 +90,5 @@ def test_eval_with_multiple_values(warning, critical, exp_state):
     assert isinstance(context, CountValuesFromJSON) is True
     assert result.state == exp_state
     assert context.describe(result.metric) == "Foobar: 2 (['foo', 'bar'])"
+    assert context.performance(result.metric, None).label == 'foobar'
+    assert context.performance(result.metric, None).value == 2
