@@ -15,11 +15,21 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+    'jsonpath_rw==1.4',
+    'nagiosplugin==1.2.4',
+    'requests==2.9.1',
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'bumpversion==0.5.3',
+    'wheel==0.23.0',
+    'watchdog==0.8.3',
+    'pylint==1.5.5',
+    'pytest==2.9.1',
+    'pytest-cov==2.2.1',
+    'tox==2.1.1',
+    'Sphinx==1.3.1',
+    'requests_mock==0.7.0',
 ]
 
 setup(
