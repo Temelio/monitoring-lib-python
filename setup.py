@@ -3,9 +3,9 @@
 
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 
 with open('README.rst') as readme_file:
@@ -30,9 +30,7 @@ setup(
     author="Temelio",
     author_email='alexandre.chaussier@temelio.com',
     url='https://github.com/Temelio/monitoring-lib-python',
-    packages=[
-        'temelio_monitoring',
-    ],
+    packages=find_packages(),
     package_dir={'temelio_monitoring':
                  'temelio_monitoring'},
     include_package_data=True,
