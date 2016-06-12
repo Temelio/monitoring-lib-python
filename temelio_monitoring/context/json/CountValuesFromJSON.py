@@ -64,3 +64,13 @@ class CountValuesFromJSON(ScalarContext):
 
         # Call parent evaluate method with new updated metric
         return super().evaluate(new_metric, resource)
+
+
+    def performance(self, metric, resource):
+
+        # Create new metric with extracted values
+        new_metric = ContextUtils.replace_metric_value(metric,
+                                                       len(self._values))
+
+        # Call parent evaluate method with new updated metric
+        return super().performance(new_metric, resource)
