@@ -2,7 +2,7 @@
 Manage utils methods to use in context classes
 """
 
-from nagiosplugin import CheckError
+from nagiosplugin import CheckError, Metric
 
 
 class ContextUtils(object):
@@ -59,3 +59,45 @@ class ContextUtils(object):
 
         # Get value
         return metric_value[0].value
+
+
+    @staticmethod
+    def manage_values_from_json(metric_values):
+        """
+        Manage multiple values in metric from JSON data
+
+        :param metric_values: Metric values
+        :type metric_values: list
+        :returns: Extracted values from JSON path result
+        :rtype: list
+        """
+
+        values = []
+
+        # Manage JSON path results
+        for element in metric_values:
+            values.append(element.value)
+
+        return values
+
+
+    @staticmethod
+    def replace_metric_value(metric, new_value):
+        """
+        Create new metric with value parameter
+
+        :param metric: Metric value
+        :type metric: nagiosplugin.Metric
+        :returns: New metric with extracted values from JSON path result
+        :rtype: nagiosplugin.Metric
+        """
+
+        new_metric = Metric(
+            metric.name,
+            new_value,
+            context=metric.context,
+            contextobj=metric.contextobj,
+            resource=metric.resource)
+
+        # Return metric with values extracted
+        return new_metric

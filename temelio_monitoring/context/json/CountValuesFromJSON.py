@@ -2,7 +2,9 @@
 This module manage element count testing context for data from JSON
 """
 
-from nagiosplugin import Metric, ScalarContext
+from nagiosplugin import ScalarContext
+
+from temelio_monitoring.utils import ContextUtils
 
 
 class CountValuesFromJSON(ScalarContext):
@@ -53,18 +55,12 @@ class CountValuesFromJSON(ScalarContext):
         :rtype: nagiosplugin.Result
         """
 
-        # Manage JSON path results
-        if len(metric.value) != 0:
-            for element in metric.value:
-                self._values.append(element.value)
+        # Extract values from JSON path result
+        self._values = ContextUtils.manage_values_from_json(metric.value)
 
-        # Extract value from JSON path result
-        new_metric = Metric(
-            metric.name,
-            len(self._values),
-            context=metric.context,
-            contextobj=metric.contextobj,
-            resource=metric.resource)
+        # Create new metric with extracted values
+        new_metric = ContextUtils.replace_metric_value(metric,
+                                                       len(self._values))
 
         # Call parent evaluate method with new updated metric
         return super().evaluate(new_metric, resource)
