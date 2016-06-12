@@ -2,7 +2,8 @@
 History
 =======
 
-0.1.0 (2016-4-29)
+0.1.0 (2016-06-12)
 ------------------
 
-* First release on PyPI.
+* Add JSON probe and contexts management
+* Add Nginx stub status page probe and context
