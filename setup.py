@@ -34,7 +34,7 @@ test_requirements = [
 
 setup(
     name='temelio_monitoring',
-    version='0.1.0',
+    version='0.1.2',
     description="Temelio monitoring lib written in Python, used with Shinken.",
     long_description=readme + '\n\n' + history,
     author="Temelio",
