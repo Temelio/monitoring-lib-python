@@ -2,7 +2,7 @@
 Manage Nginx module classes import
 """
 
-from . import StubStatusPage
+from .stub_status_page import StubStatusPage
 
 
-StubStatusPage = StubStatusPage.StubStatusPage
+StubStatusPage = StubStatusPage

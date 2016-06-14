@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    temelio_monitoring.resource.json
     temelio_monitoring.resource.webserver
 
 Module contents

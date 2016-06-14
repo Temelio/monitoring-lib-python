@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    temelio_monitoring.cli_parser
     temelio_monitoring.context
     temelio_monitoring.resource
     temelio_monitoring.utils

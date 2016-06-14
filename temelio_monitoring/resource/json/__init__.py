@@ -4,7 +4,7 @@ Manage Json module classes import
 
 """
 
-from . import GetValueByJsonPath
+from .get_value_by_json_path import GetValueByJsonPath
 
 
-GetValueByJsonPath = GetValueByJsonPath.GetValueByJsonPath
+GetValueByJsonPath = GetValueByJsonPath

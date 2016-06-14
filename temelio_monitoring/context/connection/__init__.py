@@ -2,7 +2,7 @@
 Manage connection module classes import
 """
 
-from . import ConnectionCount
+from .connection_count import ConnectionCount
 
 
-ConnectionCount = ConnectionCount.ConnectionCount
+ConnectionCount = ConnectionCount

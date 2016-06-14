@@ -4,10 +4,10 @@ temelio_monitoring.context.connection package
 Submodules
 ----------
 
-temelio_monitoring.context.connection.ConnectionCount module
-------------------------------------------------------------
+temelio_monitoring.context.connection.connection_count module
+-------------------------------------------------------------
 
-.. automodule:: temelio_monitoring.context.connection.ConnectionCount
+.. automodule:: temelio_monitoring.context.connection.connection_count
     :members:
     :undoc-members:
     :show-inheritance:

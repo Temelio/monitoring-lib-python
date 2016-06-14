@@ -4,10 +4,10 @@ temelio_monitoring.resource.webserver.nginx package
 Submodules
 ----------
 
-temelio_monitoring.resource.webserver.nginx.StubStatusPage module
------------------------------------------------------------------
+temelio_monitoring.resource.webserver.nginx.stub_status_page module
+-------------------------------------------------------------------
 
-.. automodule:: temelio_monitoring.resource.webserver.nginx.StubStatusPage
+.. automodule:: temelio_monitoring.resource.webserver.nginx.stub_status_page
     :members:
     :undoc-members:
     :show-inheritance:

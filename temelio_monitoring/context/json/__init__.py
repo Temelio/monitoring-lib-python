@@ -2,10 +2,10 @@
 Manage json context classes import
 """
 
-from . import CountValuesFromJSON
-from . import ScalarValueFromJSON
-from . import StringValueFromJSON
+from .count_values_from_json import CountValuesFromJSON
+from .scalar_value_from_json import ScalarValueFromJSON
+from .string_value_from_json import StringValueFromJSON
 
-CountValuesFromJSON = CountValuesFromJSON.CountValuesFromJSON
-ScalarValueFromJSON = ScalarValueFromJSON.ScalarValueFromJSON
-StringValueFromJSON = StringValueFromJSON.StringValueFromJSON
+CountValuesFromJSON = CountValuesFromJSON
+ScalarValueFromJSON = ScalarValueFromJSON
+StringValueFromJSON = StringValueFromJSON
