@@ -29,6 +29,7 @@ test_requirements = [
     'pytest-cov==2.2.1',
     'tox==2.1.1',
     'Sphinx==1.3.1',
+    'capturer==2.1.1',
     'requests_mock==0.7.0',
 ]
 
