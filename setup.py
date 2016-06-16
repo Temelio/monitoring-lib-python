@@ -29,12 +29,13 @@ test_requirements = [
     'pytest-cov==2.2.1',
     'tox==2.1.1',
     'Sphinx==1.3.1',
+    'capturer==2.1.1',
     'requests_mock==0.7.0',
 ]
 
 setup(
     name='temelio_monitoring',
-    version='0.1.2',
+    version='0.2.0',
     description="Temelio monitoring lib written in Python, used with Shinken.",
     long_description=readme + '\n\n' + history,
     author="Temelio",

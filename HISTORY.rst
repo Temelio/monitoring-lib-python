@@ -2,6 +2,12 @@
 History
 =======
 
+0.2.0 (2016-06-16)
+------------------
+
+* Rename class files
+* Add cli argument parser classes
+
 0.1.2 (2016-06-13)
 ------------------
 

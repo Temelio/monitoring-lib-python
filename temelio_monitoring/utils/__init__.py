@@ -2,10 +2,10 @@
 Manage utils class import
 """
 
-from . import ContextUtils
-from . import OperatorUtils
-from . import RequestsUtils
+from .context_utils import ContextUtils
+from .operator_utils import OperatorUtils
+from .requests_utils import RequestsUtils
 
-ContextUtils = ContextUtils.ContextUtils
-OperatorUtils = OperatorUtils.OperatorUtils
-RequestsUtils = RequestsUtils.RequestsUtils
+ContextUtils = ContextUtils
+OperatorUtils = OperatorUtils
+RequestsUtils = RequestsUtils
