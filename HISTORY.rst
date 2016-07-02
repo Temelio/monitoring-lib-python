@@ -2,6 +2,11 @@
 History
 =======
 
+0.3.0 (2016-07-03)
+------------------
+
+* Add certificate management for JSON probe and requests utils
+
 0.2.0 (2016-06-16)
 ------------------
 
