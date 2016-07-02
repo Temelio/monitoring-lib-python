@@ -12,7 +12,8 @@ class RequestsUtils(object):
     """
 
     @staticmethod
-    def get(url='', username='', password=''):
+    def get(url='', username='', password='',
+            certificate_file='', key_file=''):
         """
         Do a get request, with error management
 
@@ -27,7 +28,8 @@ class RequestsUtils(object):
         """
 
         try:
-            request = get(url, auth=(username, password))
+            request = get(url, auth=(username, password),
+                          cert=(certificate_file, key_file))
         except RequestException as err:
             raise CheckError(RuntimeError(err))
 

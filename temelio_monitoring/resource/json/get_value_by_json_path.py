@@ -37,6 +37,8 @@ class GetValueByJsonPath(Resource):
         self.src = kwargs.get('src', '')
         self.username = kwargs.get('username', '')
         self.password = kwargs.get('password', '')
+        self.certificate_file = kwargs.get('certificate_file', '')
+        self.key_file = kwargs.get('key_file', '')
         self.requests = kwargs.get('requests', [])
         self.request_separator = kwargs.get('request_separator', ';;')
 
@@ -55,7 +57,9 @@ class GetValueByJsonPath(Resource):
         # Get status page content
         request = RequestsUtils.get(url=self.src,
                                     username=self.username,
-                                    password=self.password)
+                                    password=self.password,
+                                    certificate_file=self.certificate_file,
+                                    key_file=self.key_file)
 
         return request.json()
 
