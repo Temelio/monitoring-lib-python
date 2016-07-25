@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to temelio_monitoring's documentation!
-======================================
+==============================================
 
 Contents:
 
@@ -14,6 +14,7 @@ Contents:
    readme
    installation
    usage
+   Project structure <modules>
    history
 
 Indices and tables

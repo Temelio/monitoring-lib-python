@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     temelio_monitoring.context.connection
+    temelio_monitoring.context.expire
     temelio_monitoring.context.json
 
 Module contents

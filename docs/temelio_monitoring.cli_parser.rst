@@ -7,6 +7,9 @@ Subpackages
 .. toctree::
 
     temelio_monitoring.cli_parser.authentication
+    temelio_monitoring.cli_parser.connection
+    temelio_monitoring.cli_parser.duration
+    temelio_monitoring.cli_parser.web
 
 Submodules
 ----------
