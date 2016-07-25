@@ -1,7 +1,7 @@
 monitoring-lib-python
 =====================
 
-.. image:: https://travis-ci.org/Temelio/monitoring-lib-python.png?branch=master
+.. image:: https://travis-ci.org/Temelio/monitoring-lib-python.svg?branch=master
     :target: https://travis-ci.org/Temelio/monitoring-lib-python
 
 Temelio monitoring lib written in Python, used with Shinken.
