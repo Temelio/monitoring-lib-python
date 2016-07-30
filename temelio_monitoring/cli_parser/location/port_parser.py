@@ -22,5 +22,6 @@ class PortParser(ArgumentParser):
             '--port',
             action=kwargs.get('action', 'store'),
             type=kwargs.get('type', int),
+            default=kwargs.get('default', None),
             help=kwargs.get('help', 'Host port'),
             required=kwargs.get('required', False))
