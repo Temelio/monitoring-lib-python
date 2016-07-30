@@ -2,6 +2,19 @@
 History
 =======
 
+0.4.0 (2016-07-30)
+------------------
+
+Resources:
+* Add sclar redis info resource
+
+Cli parsers:
+* Add database id cli parser
+* Add host cli parser
+* Add metric name cli parser
+* Add port cli parser
+* Add rejected connection cli parser
+
 0.3.0 (2016-07-03)
 ------------------
 
