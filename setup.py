@@ -17,6 +17,7 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'jsonpath_rw==1.4',
     'nagiosplugin==1.2.4',
+    'redis==2.10.5',
     'requests==2.9.1',
 ]
 
@@ -27,6 +28,7 @@ test_requirements = [
     'pylint==1.5.5',
     'pytest==2.9.1',
     'pytest-cov==2.2.1',
+    'pytest-mock==1.1',
     'tox==2.1.1',
     'Sphinx==1.3.1',
     'capturer==2.1.1',
@@ -35,7 +37,7 @@ test_requirements = [
 
 setup(
     name='temelio_monitoring',
-    version='0.3.0',
+    version='0.4.0',
     description="Temelio monitoring lib written in Python, used with Shinken.",
     long_description=readme + '\n\n' + history,
     author="Temelio",
