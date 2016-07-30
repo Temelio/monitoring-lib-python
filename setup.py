@@ -27,6 +27,7 @@ test_requirements = [
     'pylint==1.5.5',
     'pytest==2.9.1',
     'pytest-cov==2.2.1',
+    'pytest-mock==1.1',
     'tox==2.1.1',
     'Sphinx==1.3.1',
     'capturer==2.1.1',
