@@ -2,6 +2,12 @@
 History
 =======
 
+0.5.1 (2016-07-30)
+------------------
+
+Cli parsers:
+* Fix a missing customizable default value for PortParser
+
 0.5.0 (2016-07-30)
 ------------------
 
