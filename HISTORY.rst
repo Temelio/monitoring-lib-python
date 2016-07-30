@@ -2,6 +2,12 @@
 History
 =======
 
+0.5.0 (2016-07-30)
+------------------
+
+Cli parsers:
+* Add generic thresholds cli parser
+
 0.4.0 (2016-07-30)
 ------------------
 
