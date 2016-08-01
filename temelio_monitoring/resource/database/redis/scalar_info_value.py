@@ -92,7 +92,8 @@ class ScalarInfoValue(Resource):
 
         # Build and return Metric objects from data if scalar, else raise
         if isinstance(metric_value, int) or isinstance(metric_value, float):
-            yield Metric(self.metric_name, metric_value)
+            yield Metric('db{}_{}'.format(self.database_id, self.metric_name),
+                         metric_value)
         else:
             raise CheckError(
                 '"{}" value is not an integer or float: "{}" !'.format(
