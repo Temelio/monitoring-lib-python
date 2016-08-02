@@ -2,6 +2,12 @@
 History
 =======
 
+0.5.2 (2016-08-02)
+------------------
+
+Resources:
+* Add database id in metric returned by redis info resource
+
 0.5.1 (2016-07-30)
 ------------------
 
