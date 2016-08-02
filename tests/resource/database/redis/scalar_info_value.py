@@ -74,9 +74,12 @@ def test_invalid_metric_or_value(mocker, metric_name, expected_error_msg):
 
 
 @pytest.mark.parametrize('metric_name,expected_metric', [
-    ['foobar_int', Metric('foobar_int', 1, context='foobar_int')],
-    ['foobar_float', Metric('foobar_float', 1.0, context='foobar_float')],
-    ['hit_rate', Metric('hit_rate', 0, context='hit_rate')],
+    ['foobar_int', Metric('db0_foobar_int', 1, context='db0_foobar_int')],
+    [
+        'foobar_float',
+        Metric('db0_foobar_float', 1.0, context='db0_foobar_float')
+    ],
+    ['hit_rate', Metric('db0_hit_rate', 0, context='db0_hit_rate')],
 ])
 def test_with_valid_metrics(mocker, metric_name, expected_metric):
     """
@@ -144,7 +147,7 @@ def test_with_another_hit_rate(mocker):
         'redis.scalar_info_value.StrictRedis',
         new_callable=FakeStrictRedis):
 
-        expected_metric = Metric('hit_rate', 0.9, context='hit_rate')
+        expected_metric = Metric('db0_hit_rate', 0.9, context='db0_hit_rate')
         resource = ScalarInfoValue(metric_name='hit_rate')
         metric = next(resource.probe())
 
