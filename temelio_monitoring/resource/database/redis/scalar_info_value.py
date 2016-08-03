@@ -16,8 +16,7 @@ class ScalarInfoValue(Resource):
     This ressource get one value from redis information about connections
     """
 
-    def __init__(self, database_id=0, host='127.0.0.1', port=6379, password='',
-                 metric_name=''):
+    def __init__(self, **kwargs):
         """
         Initialize ressource attributes
 
@@ -25,17 +24,22 @@ class ScalarInfoValue(Resource):
         :param port: Redis server listening port
         :param password: Password of username authorized to view stats
         :param metric_name: Redis informations metric name
+        :param section_name: Redis informations section name
         :type host: string
         :type port: int
         :type password: string
         :type metric_name: string
+        :type section_name: string
         """
 
-        self.database_id = database_id
-        self.host = host
-        self.metric_name = metric_name
-        self.password = password
-        self.port = port
+        # Arguments management
+        self.database_id = kwargs.get('database_id', 0)
+        self.host = kwargs.get('host', '127.0.0.1')
+        self.metric_name = kwargs.get('metric_name', '')
+        self.password = kwargs.get('password', '')
+        self.port = kwargs.get('port', 6379)
+        self.section_name = kwargs.get('section_name', 'default')
+
         self.redis_infos = {}
 
 
@@ -74,7 +78,7 @@ class ScalarInfoValue(Resource):
                 port=self.port)
 
             # Get statistics
-            self.redis_infos = redis_client.info()
+            self.redis_infos = redis_client.info(section=self.section_name)
         except RedisError as error:
             raise CheckError(
                 'Error with Redis server connection: {}'.format(str(error)))
