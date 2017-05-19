@@ -2,9 +2,6 @@
 dist: 'trusty'
 sudo: 'required'
 language: 'python'
-python:
-  - '3.4'
-  - '3.5'
 
 env:
   matrix:
@@ -13,6 +10,5 @@ env:
 
 script:
   - 'pip install tox-travis'
-
-script:
+  - 'pip install -r requirements_dev.txt'
   - 'tox -e "${TOXENV}"'
