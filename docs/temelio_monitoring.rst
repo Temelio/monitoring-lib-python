@@ -1,5 +1,5 @@
-temelio_monitoring package
-==========================
+temelio\_monitoring package
+===========================
 
 Subpackages
 -----------
@@ -14,8 +14,8 @@ Subpackages
 Submodules
 ----------
 
-temelio_monitoring.temelio_monitoring module
---------------------------------------------
+temelio\_monitoring\.temelio\_monitoring module
+-----------------------------------------------
 
 .. automodule:: temelio_monitoring.temelio_monitoring
     :members:

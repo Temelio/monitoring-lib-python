@@ -1,0 +1,118 @@
+CHANGES
+=======
+
+* Update requests-mock from 0.7.0 to 1.3.0
+* Update capturer from 2.1.1 to 2.4
+* Update sphinx from 1.4.5 to 1.6.1
+* Update tox from 2.1.1 to 2.7.0
+* Update pytest-mock from 1.1 to 1.6.0
+* Update pytest-cov from 2.2.1 to 2.5.1
+* Update pytest from 2.9.1 to 3.0.7
+* Update pylint from 1.5.5 to 1.7.1
+* Update wheel from 0.23.0 to 0.29.0
+* Update requests from 2.9.1 to 2.14.2
+
+0.6.0
+-----
+
+* Bumpversion to 0.6.0
+* Add pyup integration, with develop base branch
+* Add probe state file parser
+* Add Redis ressource to get commands stats
+* Update pylint settings, needed to manage fake classes in tests
+* Add Redis section name magement in ScalarInfoValue class
+* Add section parser
+
+0.5.2
+-----
+
+* Bumpversion 0.5.2
+* Add database id in metric returned by ScalarInfoValue Redis resource
+
+0.5.1
+-----
+
+* Bumpversion 0.5.1
+* Port parser must have a customizable default value
+
+0.5.0
+-----
+
+* Bumpversion 0.5.0
+* Add generic thresholds parser
+
+0.4.0
+-----
+
+* Bumpversion 0.4.0
+* Add missing documentation link
+* Fix setup.py missing dependency
+* Add pytest-mock dev dependency
+* Add metric name parser
+* Add database id parser
+* Add host and port location cli parsers
+* Add resource to mangage scalar Redis infos
+* Update function max args pylint setting
+* Add client cli parser
+* Add rejected connection cli parser
+* Update and fix documentation
+* Update sphinx version
+* Add duration day context and parser
+
+0.3.0
+-----
+
+* Bumpversion 0.3.0
+* Add client certificate management for requests
+* Add certificate file and key file arguments parser
+
+0.2.0
+-----
+
+* Bumpversion 0.2.0
+* Add ActiveConnectionParser and WaitingCOnnectionParser
+* Add web url parser
+* Add Common, Password and Username parser
+* Rename class files without capital letters
+
+0.1.2
+-----
+
+* Fix bad version in setup.py
+
+0.1.1
+-----
+
+* Update history fix setup.py fixes
+* Complete install\_require and tests\_require
+* Use find\_packages() to create packages list
+
+0.1.0
+-----
+
+* Update release date and description
+* Add Performance management for CountValuesFromJSON class
+* Factorize metric value change
+* Add CountValuesFromJSON context class
+* Add ScalarValueFromJSON context class
+* Move single value management from JSON path result to ContextUtils
+* Better string value from JSON management
+* Add ContextUtils class
+* Move StringEqualityFromJSON context to json submodule
+* Add OperatorUtils class
+* GetValueByJsonPath can manage multiple JSON path
+* GetValueByJsonPath context name and metric name can be defined by user
+* Use \*\*kwargs in GetValueByJsonPath init
+* Remove browser display in docs make target
+* Change tasks order in .travis.yml file
+* Change tox target order
+* Fix index error exception
+* Fix linter deuplicate warning
+* Add JSON management with JSON path
+* Add JSON string value testing
+* Update tox.ini whitelisting
+* Update documentation
+* Add probe to manage stub status Nginx page
+* Add ConnectionCount context
+* Add base project structure
+* Initial commit
