@@ -2,6 +2,15 @@
 History
 =======
 
+0.6.0 (2017-05-19)
+------------------
+
+Resources:
+* Add Redis commands statistics
+
+General:
+* Add pyup integration
+
 0.5.2 (2016-08-02)
 ------------------
 
