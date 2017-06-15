@@ -1,4 +1,4 @@
 jsonpath_rw==1.4
 nagiosplugin==1.2.4
 redis==2.10.5
-requests==2.17.3
+requests==2.18.1
