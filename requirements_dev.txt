@@ -1,7 +1,7 @@
 bumpversion==0.5.3
 wheel==0.30.0
 watchdog==0.8.3
-pylint==1.8.2
+pylint==1.8.3
 pytest==3.4.2
 pytest-cov==2.5.1
 pytest-mock==1.7.1
