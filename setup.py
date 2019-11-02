@@ -18,7 +18,7 @@ requirements = [
     'jsonpath_rw==1.4',
     'nagiosplugin==1.2.4',
     'redis==2.10.5',
-    'requests==2.9.1',
+    'requests==2.20.0',
 ]
 
 test_requirements = [
