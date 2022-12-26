@@ -23,7 +23,7 @@ requirements = [
 
 test_requirements = [
     'bumpversion==0.5.3',
-    'wheel==0.23.0',
+    'wheel==0.38.1',
     'watchdog==0.8.3',
     'pylint==1.5.5',
     'pytest==2.9.1',
